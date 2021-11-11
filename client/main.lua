@@ -1,9 +1,4 @@
-local CurrentCops = 0
-
-RegisterNetEvent('police:SetCopCount')
-AddEventHandler('police:SetCopCount', function(amount)
-    CurrentCops = amount
-end)
+local QBCore = exports['qb-core']:GetCoreObject()
 
 -- Code
 
