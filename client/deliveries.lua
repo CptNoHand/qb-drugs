@@ -55,9 +55,9 @@ CreateThread(function()
                             end
                         elseif dealerIsHome then
                             if dealer["name"] == "Mystery man" then
-                                DrawText3D(dealer["coords"]["x"], dealer["coords"]["y"], dealer["coords"]["z"], '[E] To buy / [G] Help your guy ($5000)')
+                                DrawText3D(dealer["coords"]["x"], dealer["coords"]["y"], dealer["coords"]["z"], '[E] To buy')
                             else
-                                DrawText3D(dealer["coords"]["x"], dealer["coords"]["y"], dealer["coords"]["z"], '[E] To buy / [G] Start a mission')
+                                DrawText3D(dealer["coords"]["x"], dealer["coords"]["y"], dealer["coords"]["z"], '[E] To buy')
                             end
                             if IsControlJustPressed(0, 38) then
                                 buyDealerStuff()
@@ -90,15 +90,6 @@ CreateThread(function()
                                         end)
                                     else
                                         QBCore.Functions.Notify("There is no one nearby..", "error")
-                                    end
-                                else
-                                    if waitingDelivery == nil then
-                                        TriggerEvent("chatMessage", "Dealer "..Config.Dealers[currentDealer]["name"], "These are the products, I\'ll keep in touch through email")
-                                        requestDelivery()
-                                        interacting = false
-                                        dealerIsHome = false
-                                    else
-                                        TriggerEvent("chatMessage", "Dealer "..Config.Dealers[currentDealer]["name"], "error", 'You still need to complete a delivery, what are you waiting for?!')
                                     end
                                 end
                             end
@@ -217,147 +208,6 @@ AddEventHandler('qb-drugs:client:setDealerItems', function(itemData, amount, dea
     Config.Dealers[dealer]["products"][itemData.slot].amount = Config.Dealers[dealer]["products"][itemData.slot].amount - amount
 end)
 
-function requestDelivery()
-    local location = math.random(1, #Config.DeliveryLocations)
-    local amount = math.random(1, 3)
-    local item = randomDeliveryItemOnRep()
-    waitingDelivery = {
-        ["coords"] = Config.DeliveryLocations[location]["coords"],
-        ["locationLabel"] = Config.DeliveryLocations[location]["label"],
-        ["amount"] = amount,
-        ["dealer"] = currentDealer,
-        ["itemData"] = Config.DeliveryItems[item]
-    }
-    TriggerServerEvent('qb-drugs:server:giveDeliveryItems', amount)
-    SetTimeout(2000, function()
-        TriggerServerEvent('qb-phone:server:sendNewMail', {
-            sender = Config.Dealers[currentDealer]["name"],
-            subject = "Delivery Location",
-            message = "Here is all info about the delivery, <br>Items: <br> "..amount.."x "..QBCore.Shared.Items[waitingDelivery["itemData"]["item"]]["label"].."<br><br> be in time!!",
-            button = {
-                enabled = true,
-                buttonEvent = "qb-drugs:client:setLocation",
-                buttonData = waitingDelivery
-            }
-        })
-    end)
-end
-
-function randomDeliveryItemOnRep()
-    local ped = PlayerPedId()
-    local myRep = QBCore.Functions.GetPlayerData().metadata["dealerrep"]
-
-    retval = nil
-
-    for k, v in pairs(Config.DeliveryItems) do
-        if Config.DeliveryItems[k]["minrep"] <= myRep then
-            local availableItems = {}
-            availableItems[#availableItems+1] = k
-
-            local item = math.random(1, #availableItems)
-
-            retval = item
-        end
-    end
-    return retval
-end
-
-function setMapBlip(x, y)
-    SetNewWaypoint(x, y)
-    QBCore.Functions.Notify('The route to the delivery location has been set on your map.', 'success');
-end
-
-RegisterNetEvent('qb-drugs:client:setLocation')
-AddEventHandler('qb-drugs:client:setLocation', function(locationData)
-    if activeDelivery == nil then
-        activeDelivery = locationData
-    else
-        setMapBlip(activeDelivery["coords"]["x"], activeDelivery["coords"]["y"])
-        QBCore.Functions.Notify('You still have an open delivery...')
-        return
-    end
-
-    deliveryTimeout = 300
-
-    deliveryTimer()
-
-    setMapBlip(activeDelivery["coords"]["x"], activeDelivery["coords"]["y"])
-
-    CreateThread(function()
-        while true do
-
-            local ped = PlayerPedId()
-            local pos = GetEntityCoords(ped)
-            local inDeliveryRange = false
-
-            if activeDelivery ~= nil then
-                local dist = #(pos - vector3(activeDelivery["coords"]["x"], activeDelivery["coords"]["y"], activeDelivery["coords"]["z"]))
-
-                if dist < 15 then
-                    inDeliveryRange = true
-                    if dist < 1.5 then
-                        DrawText3D(activeDelivery["coords"]["x"], activeDelivery["coords"]["y"], activeDelivery["coords"]["z"], '[E] '..activeDelivery["amount"]..'x '..QBCore.Shared.Items[activeDelivery["itemData"]["item"]]["label"]..' deliver.')
-
-                        if IsControlJustPressed(0, 38) then
-                            deliverStuff(activeDelivery)
-                            activeDelivery = nil
-                            waitingDelivery = nil
-                            break
-                        end
-                    end
-                end
-
-                if not inDeliveryRange then
-                    Wait(1500)
-                end
-            else
-                break
-            end
-
-            Wait(3)
-        end
-    end)
-end)
-
-function deliveryTimer()
-    CreateThread(function()
-        while true do
-
-            if deliveryTimeout - 1 > 0 then
-                deliveryTimeout = deliveryTimeout - 1
-            else
-                deliveryTimeout = 0
-                break
-            end
-
-            Wait(1000)
-        end
-    end)
-end
-
-function deliverStuff(activeDelivery)
-    if deliveryTimeout > 0 then
-        TriggerEvent('animations:client:EmoteCommandStart', {"c"})
-        Wait(500)
-        TriggerEvent('animations:client:EmoteCommandStart', {"bumbin"})
-        checkPedDistance()
-        QBCore.Functions.Progressbar("work_dropbox", "Delivering products..", 3500, false, true, {
-            disableMovement = true,
-            disableCarMovement = true,
-            disableMouse = false,
-            disableCombat = true,
-        }, {}, {}, {}, function() -- Done
-            TriggerServerEvent('qb-drugs:server:succesDelivery', activeDelivery, true)
-        end, function() -- Cancel
-            ClearPedTasks(PlayerPedId())
-            QBCore.Functions.Notify("Canceled..", "error")
-        end)
-    else
-        TriggerServerEvent('qb-drugs:server:succesDelivery', activeDelivery, false)
-    end
-    deliveryTimeout = 0
-end
-
 function checkPedDistance()
     local PlayerPeds = {}
     if next(PlayerPeds) == nil then
@@ -415,29 +265,6 @@ AddEventHandler('qb-drugs:client:robberyCall', function(msg, streetLabel, coords
             RemoveBlip(blip)
             return
         end
-    end
-end)
-
-RegisterNetEvent('qb-drugs:client:sendDeliveryMail')
-AddEventHandler('qb-drugs:client:sendDeliveryMail', function(type, deliveryData)
-    if type == 'perfect' then
-        TriggerServerEvent('qb-phone:server:sendNewMail', {
-            sender = Config.Dealers[deliveryData["dealer"]]["name"],
-            subject = "Delivery",
-            message = "You did good work, hope to see you again ;)<br><br>Groeten, "..Config.Dealers[deliveryData["dealer"]]["name"]
-        })
-    elseif type == 'bad' then
-        TriggerServerEvent('qb-phone:server:sendNewMail', {
-            sender = Config.Dealers[deliveryData["dealer"]]["name"],
-            subject = "Delivery",
-            message = "I have received complaints about your delivery, don\'t let this happen again..."
-        })
-    elseif type == 'late' then
-        TriggerServerEvent('qb-phone:server:sendNewMail', {
-            sender = Config.Dealers[deliveryData["dealer"]]["name"],
-            subject = "Delivery",
-            message = "You weren\'t on time. Did you have more important things to do than business?"
-        })
     end
 end)
 
