@@ -1,9 +1,9 @@
 Config = Config or {}
-Config.MinimumDrugSalePolice = 2
+Config.MinimumDrugSalePolice = 1
 
 Config.Products = {
     [1] = {
-        name = "weed_white-widow",
+        name = "weed_white-widow_seed",
         price = 15,
         amount = 150,
         info = {},
@@ -21,85 +21,49 @@ Config.Products = {
         minrep = 0,
     },
     [3] = {
-        name = "weed_skunk",
-        price = 15,
-        amount = 150,
-        info = {},
-        type = "item",
-        slot = 3,
-        minrep = 20,
-    },
-    [4] = {
-        name = "weed_purple-haze",
-        price = 15,
-        amount = 150,
-        info = {},
-        type = "item",
-        slot = 4,
-        minrep = 40,
-    },
-    [5] = {
-        name = "weed_og-kush",
-        price = 15,
-        amount = 150,
-        info = {},
-        type = "item",
-        slot = 5,
-        minrep = 60,
-    },
-    [6] = {
-        name = "weed_amnesia",
-        price = 15,
-        amount = 150,
-        info = {},
-        type = "item",
-        slot = 6,
-        minrep = 80,
-    },
-    [7] = {
-        name = "weed_white-widow_seed",
-        price = 15,
-        amount = 150,
-        info = {},
-        type = "item",
-        slot = 7,
-        minrep = 100,
-    },
-    [8] = {
         name = "weed_skunk_seed",
         price = 15,
         amount = 150,
         info = {},
         type = "item",
-        slot = 8,
-        minrep = 120,
+        slot = 3,
+        minrep = 0,
     },
-    [9] = {
+    [4] = {
         name = "weed_purple-haze_seed",
         price = 15,
         amount = 150,
         info = {},
         type = "item",
-        slot = 9,
-        minrep = 140,
+        slot = 4,
+        minrep = 0,
     },
-    [10] = {
+    [5] = {
         name = "weed_og-kush_seed",
         price = 15,
         amount = 150,
         info = {},
         type = "item",
-        slot = 10,
-        minrep = 160,
+        slot = 5,
+        minrep = 0,
     },
-    [11] = {
+    [6] = {
         name = "weed_amnesia_seed",
         price = 15,
         amount = 150,
         info = {},
         type = "item",
-        slot = 11,
-        minrep = 180,
+        slot = 6,
+        minrep = 0,
+    },
+    [7] = {
+        name = "weed_ak47_seed",
+        price = 15,
+        amount = 150,
+        info = {},
+        type = "item",
+        slot = 7,
+        minrep = 0,
     },
 }
 
