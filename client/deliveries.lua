@@ -134,20 +134,10 @@ knockDealerDoor = function()
     local min = Config.Dealers[currentDealer]["time"]["min"]
     local max = Config.Dealers[currentDealer]["time"]["max"]
 
-    if max < min then
-        if hours <= max then
-            knockDoorAnim(true)
-        elseif hours >= min then
-            knockDoorAnim(true)
-        else
-            knockDoorAnim(false)
-        end
+    if hours >= min and hours <= max then
+        knockDoorAnim(true)
     else
-        if hours >= min and hours <= max then
-            knockDoorAnim(true)
-        else
-            knockDoorAnim(false)
-        end
+        knockDoorAnim(false)
     end
 end
 
