@@ -55,7 +55,7 @@ CreateThread(function()
                             end
                         elseif dealerIsHome then
                             if dealer["name"] == "Mystery man" then
-                                DrawText3D(dealer["coords"]["x"], dealer["coords"]["y"], dealer["coords"]["z"], '[E] To buy')
+                                DrawText3D(dealer["coords"]["x"], dealer["coords"]["y"], dealer["coords"]["z"], '[E] To buy / [G] to get help')
                             else
                                 DrawText3D(dealer["coords"]["x"], dealer["coords"]["y"], dealer["coords"]["z"], '[E] To buy')
                             end
@@ -90,15 +90,6 @@ CreateThread(function()
                                         end)
                                     else
                                         QBCore.Functions.Notify("There is no one nearby..", "error")
-                                    end
-                                else
-                                    if waitingDelivery == nil then
-                                        TriggerEvent("chatMessage", "Dealer "..Config.Dealers[currentDealer]["name"], "These are the products, I\'ll keep in touch through email")
-                                        requestDelivery()
-                                        interacting = false
-                                        dealerIsHome = false
-                                    else
-                                        TriggerEvent("chatMessage", "Dealer "..Config.Dealers[currentDealer]["name"], "error", 'You still need to complete a delivery, what are you waiting for?!')
                                     end
                                 end
                             end
