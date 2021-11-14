@@ -55,9 +55,9 @@ CreateThread(function()
                             end
                         elseif dealerIsHome then
                             if dealer["name"] == "Mystery man" then
-                                DrawText3D(dealer["coords"]["x"], dealer["coords"]["y"], dealer["coords"]["z"], '[E] To buy / [G] Help your guy ($5000)')
+                                DrawText3D(dealer["coords"]["x"], dealer["coords"]["y"], dealer["coords"]["z"], '[E] To buy')
                             else
-                                DrawText3D(dealer["coords"]["x"], dealer["coords"]["y"], dealer["coords"]["z"], '[E] To buy / [G] Start a mission')
+                                DrawText3D(dealer["coords"]["x"], dealer["coords"]["y"], dealer["coords"]["z"], '[E] To buy')
                             end
                             if IsControlJustPressed(0, 38) then
                                 buyDealerStuff()
