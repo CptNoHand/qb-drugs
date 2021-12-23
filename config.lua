@@ -12,7 +12,7 @@ Config.Products = {
         minrep = 0,
     },
     [2] = {
-        name = "ephedrine",
+        name = "acetone",
         price = 6,
         amount = 5,
         info = {},
