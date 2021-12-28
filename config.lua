@@ -13,8 +13,8 @@ Config.Products = {
     },
     [2] = {
         name = "acetone",
-        price = 6,
-        amount = 5,
+        price = 8,
+        amount = 6,
         info = {},
         type = "item",
         slot = 2,
@@ -83,40 +83,40 @@ Config.CornerSellingDrugsList = {
 
 Config.DrugsPrice = {
     ["weed_white-widow"] = {
-        min = 15,
-        max = 24,
+        min = 10,
+        max = 55,
     },
     ["weed_og-kush"] = {
-        min = 15,
-        max = 28,
+        min = 14,
+        max = 55,
     },
     ["weed_skunk"] = {
         min = 15,
-        max = 31,
+        max = 56,
     },
     ["weed_amnesia"] = {
         min = 18,
-        max = 34,
+        max = 57,
     },
     ["weed_purple-haze"] = {
-        min = 18,
-        max = 37,
+        min = 16,
+        max = 58,
     },
     ["weed_ak47"] = {
-        min = 18,
-        max = 40,
+        min = 16,
+        max = 59,
     },
     ["crack_baggy"] = {
         min = 22,
-        max = 38,
+        max = 60,
     },
     ["cokebaggy"] = {
-        min = 18,
-        max = 37,
+        min = 20,
+        max = 55,
     },
     ["meth"] = {
-        min = 20,
-        max = 50,
+        min = 35,
+        max = 80,
     },
 }
 
