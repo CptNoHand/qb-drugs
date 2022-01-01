@@ -84,39 +84,39 @@ Config.CornerSellingDrugsList = {
 Config.DrugsPrice = {
     ["weed_white-widow"] = {
         min = 10,
-        max = 55,
+        max = 58,
     },
     ["weed_og-kush"] = {
         min = 14,
-        max = 55,
+        max = 57,
     },
     ["weed_skunk"] = {
         min = 15,
-        max = 56,
+        max = 57,
     },
     ["weed_amnesia"] = {
         min = 18,
-        max = 57,
+        max = 58,
     },
     ["weed_purple-haze"] = {
         min = 16,
-        max = 58,
+        max = 60,
     },
     ["weed_ak47"] = {
         min = 16,
-        max = 59,
+        max = 62,
     },
     ["crack_baggy"] = {
         min = 22,
-        max = 60,
+        max = 80,
     },
     ["cokebaggy"] = {
         min = 20,
-        max = 55,
+        max = 65,
     },
     ["meth"] = {
-        min = 35,
-        max = 80,
+        min = 15,
+        max = 95,
     },
 }
 
