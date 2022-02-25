@@ -65,6 +65,15 @@ Config.Products = {
         slot = 7,
         minrep = 0,
     },
+    [8] = {
+        name = "cagoule",
+        price = 5,
+        amount = 10,
+        info = {},
+        type = "item",
+        slot = 8,
+        minrep = 0,
+    },
 }
 
 Config.Dealers = {}
