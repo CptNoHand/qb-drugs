@@ -1,3 +1,5 @@
+local QBCore = exports['qb-core']:GetCoreObject()
+
 QBCore.Functions.CreateCallback('qb-drugs:server:cornerselling:getAvailableDrugs', function(source, cb)
     local AvailableDrugs = {}
     local src = source
@@ -7,7 +9,7 @@ QBCore.Functions.CreateCallback('qb-drugs:server:cornerselling:getAvailableDrugs
             local item = Player.Functions.GetItemByName(Config.CornerSellingDrugsList[i])
 
             if item ~= nil then
-                AvailableDrugs[#AvailableDrugs + 1] = {
+                AvailableDrugs[#AvailableDrugs+1] = {
                     item = item.name,
                     amount = item.amount,
                     label = QBCore.Shared.Items[item.name]["label"]
@@ -34,10 +36,10 @@ RegisterNetEvent('qb-drugs:server:sellCornerDrugs', function(item, amount, price
             Player.Functions.AddMoney('cash', price, "sold-cornerdrugs")
             TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[item], "remove")
             for i = 1, #Config.CornerSellingDrugsList, 1 do
-                item = Player.Functions.GetItemByName(Config.CornerSellingDrugsList[i])
+                local item = Player.Functions.GetItemByName(Config.CornerSellingDrugsList[i])
 
                 if item ~= nil then
-                    AvailableDrugs[#AvailableDrugs + 1] = {
+                    AvailableDrugs[#AvailableDrugs+1] = {
                         item = item.name,
                         amount = item.amount,
                         label = QBCore.Shared.Items[item.name]["label"]
@@ -51,7 +53,7 @@ RegisterNetEvent('qb-drugs:server:sellCornerDrugs', function(item, amount, price
     end
 end)
 
-RegisterNetEvent('qb-drugs:server:robCornerDrugs', function(item, amount)
+RegisterNetEvent('qb-drugs:server:robCornerDrugs', function(item, amount, price)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
     if Player then
@@ -61,7 +63,7 @@ RegisterNetEvent('qb-drugs:server:robCornerDrugs', function(item, amount)
         for i = 1, #Config.CornerSellingDrugsList, 1 do
             item = Player.Functions.GetItemByName(Config.CornerSellingDrugsList[i])
             if item then
-                AvailableDrugs[#AvailableDrugs + 1] = {
+                AvailableDrugs[#AvailableDrugs+1] = {
                     item = item.name,
                     amount = item.amount,
                     label = QBCore.Shared.Items[item.name]["label"]
