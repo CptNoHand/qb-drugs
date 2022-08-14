@@ -92,6 +92,24 @@ local function callPolice(coords)
     local streetLabel = street1
     if street2 ~= nil then streetLabel = street1..' '..street2 end
     TriggerServerEvent('police:server:PoliceAlertMessage', title, streetLabel, coords)
+    local data = exports['cd_dispatch']:GetPlayerInfo()
+        TriggerServerEvent('cd_dispatch:AddNotification', {
+            job_table = {'police'}, 
+            coords = data.coords,
+            title = '20-15 - Drug Selling',
+            message = 'A '..data.sex..' possible drug selling at '..data.street, 
+            flash = 0,
+            unique_id = tostring(math.random(0000000,9999999)),
+            blip = {
+                sprite = 431, 
+                scale = 1.2, 
+                colour = 3,
+                flashes = false, 
+                text = '911 - Drug Selling',
+                time = (5*60*1000),
+                sound = 1,
+            }
+    })
     hasTarget = false
     Wait(5000)
 end
