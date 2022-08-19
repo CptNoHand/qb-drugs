@@ -92,9 +92,27 @@ local function KnockDoorAnim(home)
     end
 end
 
-RegisterNetEvent('qb-drugs:client:updateDealerItems', function(itemData, amount)
-    TriggerServerEvent('qb-drugs:server:updateDealerItems', itemData, amount, currentDealer)
-end)
+local function KnockDealerDoor()
+    GetClosestDealer()
+    local hours = GetClockHours()
+    local min = Config.Dealers[currentDealer]["time"]["min"]
+    local max = Config.Dealers[currentDealer]["time"]["max"]
+    if max < min then
+        if hours <= max then
+            KnockDoorAnim(true)
+        elseif hours >= min then
+            KnockDoorAnim(true)
+        else
+            KnockDoorAnim(false)
+        end
+    else
+        if hours >= min and hours <= max then
+            KnockDoorAnim(true)
+        else
+            KnockDoorAnim(false)
+        end
+    end
+end
 
 local function RandomDeliveryItemOnRep()
     local myRep = QBCore.Functions.GetPlayerData().metadata["dealerrep"]
@@ -152,24 +170,7 @@ end
 
 local function PoliceCall()
     if Config.PoliceCallChance <= math.random(1, 100) then
-        local data = exports['cd_dispatch']:GetPlayerInfo()
-        TriggerServerEvent('cd_dispatch:AddNotification', {
-            job_table = {'police'}, 
-            coords = data.coords,
-            title = '20-15 - Drug Selling',
-            message = 'A '..data.sex..' possible drug selling at '..data.street, 
-            flash = 0,
-            unique_id = tostring(math.random(0000000,9999999)),
-            blip = {
-                sprite = 431, 
-                scale = 1.2, 
-                colour = 3,
-                flashes = false, 
-                text = '911 - Drug Selling',
-                time = (5*60*1000),
-                sound = 1,
-            }
-        })
+        TriggerServerEvent('police:server:policeAlert', 'Suspicous activity')
     end
 end
 
@@ -439,33 +440,4 @@ RegisterNetEvent('qb-drugs:client:sendDeliveryMail', function(type, deliveryData
             message = Lang:t("info.late_delivery")
         })
     end
-end)
-
-RegisterNetEvent('qb-drugs:client:CreateDealer', function(dealerName, minTime, maxTime)
-    local ped = PlayerPedId()
-    local loc = GetEntityCoords(ped)
-    local DealerData = {
-        name = dealerName,
-        time = {
-            min = minTime,
-            max = maxTime,
-        },
-        pos = {
-            x = loc.x,
-            y = loc.y,
-            z = loc.z,
-        }
-    }
-
-    TriggerServerEvent('qb-drugs:server:CreateDealer', DealerData)
-end)
-
-RegisterNetEvent('qb-drugs:client:RefreshDealers', function(DealerData)
-    Config.Dealers = DealerData
-end)
-
-RegisterNetEvent('qb-drugs:client:GotoDealer', function(DealerData)
-    local ped = PlayerPedId()
-    SetEntityCoords(ped, DealerData["coords"]["x"], DealerData["coords"]["y"], DealerData["coords"]["z"])
-    QBCore.Functions.Notify(Lang:t("success.teleported_to_dealer", {dealerName = DealerData["name"]}), 'success')
 end)
