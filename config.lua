@@ -74,6 +74,24 @@ Config.Products = {
         slot = 8,
         minrep = 0,
     },
+    [9] = {
+        name = "coca_seed",
+        price = 300,
+        amount = 5,
+        info = {},
+        type = "item",
+        slot = 9,
+        minrep = 25,
+    },
+    [10] = {
+        name = "mushroom_seed",
+        price = 50,
+        amount = 5,
+        info = {},
+        type = "item",
+        slot = 10,
+        minrep = 0,
+    },
 }
 
 Config.Dealers = {}
@@ -136,6 +154,14 @@ Config.DrugsPrice = {
     ["meth"] = {
         min = 45,
         max = 121,
+    },
+    ["heroin"] = {
+        min = 46,
+        max = 150,
+    },
+    ["mushroom"] = {
+        min = 5,
+        max = 50,
     },
 }
 
