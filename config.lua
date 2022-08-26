@@ -99,8 +99,8 @@ Config.Products = {
 
 -- Selling Config
 Config.SuccessChance = 50
-Config.ScamChance = 25
-Config.RobberyChance = 25
+Config.ScamChance = 20
+Config.RobberyChance = 20
 Config.MinimumDrugSalePolice = 0
 
 Config.CornerSellingDrugsList = {
@@ -114,7 +114,9 @@ Config.CornerSellingDrugsList = {
     "cokebaggy",
     "meth",
     "joint",
-    "weed_bag"
+    "weed_bag",
+    "heroin",
+    "mushroom",
 }
 
 Config.DrugsPrice = {
