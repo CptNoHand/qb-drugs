@@ -31,7 +31,11 @@ RegisterNetEvent('qb-drugs:server:giveDeliveryItems', function(deliveryData)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
     if not Player then return end
-    local item = deliveryData.itemData.item
+
+    local item = Config.DeliveryItems[deliveryData.item].item
+
+    if not item then return end
+
     Player.Functions.AddItem(item, deliveryData.amount)
     TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[item], "add")
 end)
@@ -40,7 +44,8 @@ RegisterNetEvent('qb-drugs:server:successDelivery', function(deliveryData, inTim
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
     if not Player then return end
-    local item = deliveryData.itemData.item
+
+    local item = Config.DeliveryItems[deliveryData.item].item
     local itemAmount = deliveryData.amount
     local payout = deliveryData.itemData.payout * itemAmount
     local copsOnline = QBCore.Functions.GetDutyCount('police')
