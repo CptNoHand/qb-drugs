@@ -136,7 +136,8 @@ local function RequestDelivery()
             ["locationLabel"] = Config.DeliveryLocations[location]["label"],
             ["amount"] = amount,
             ["dealer"] = currentDealer,
-            ["itemData"] = Config.DeliveryItems[item]
+            ["itemData"] = Config.DeliveryItems[item],
+            ["item"] = item
         }
         QBCore.Functions.Notify(Lang:t("info.sending_delivery_email"), 'success')
         TriggerServerEvent('qb-drugs:server:giveDeliveryItems', waitingDelivery)
@@ -169,24 +170,7 @@ end
 
 local function PoliceCall()
     if Config.PoliceCallChance <= math.random(1, 100) then
-        local data = exports['cd_dispatch']:GetPlayerInfo()
-        TriggerServerEvent('cd_dispatch:AddNotification', {
-            job_table = {'police'}, 
-            coords = data.coords,
-            title = '20-15 - Drug Selling',
-            message = 'A '..data.sex..' possible drug selling at '..data.street, 
-            flash = 0,
-            unique_id = tostring(math.random(0000000,9999999)),
-            blip = {
-                sprite = 431, 
-                scale = 1.2, 
-                colour = 3,
-                flashes = false, 
-                text = '911 - Drug Selling',
-                time = (5*60*1000),
-                sound = 1,
-            }
-        })
+        TriggerServerEvent('police:server:policeAlert', 'Suspicous activity')
     end
 end
 

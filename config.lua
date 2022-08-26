@@ -1,7 +1,7 @@
 Config = Config or {}
 Config.Dealers = {}
 Config.UseTarget = GetConvar('UseTarget', 'false') == 'true'
-Config.PoliceCallChance = 15
+Config.PoliceCallChance = 20
 
 -- Shop Config
 Config.Products = {
@@ -99,8 +99,8 @@ Config.Products = {
 
 -- Selling Config
 Config.SuccessChance = 50
-Config.ScamChance = 20
-Config.RobberyChance = 20
+Config.ScamChance = 25
+Config.RobberyChance = 25
 Config.MinimumDrugSalePolice = 0
 
 Config.CornerSellingDrugsList = {
@@ -174,10 +174,31 @@ Config.DrugsPrice = {
     },
 }
 
+-- Delivery Config
+Config.UseMarkedBills = false -- true for marked bills, false for cash
+Config.DeliveryRepGain = 1 -- amount of rep gained per delivery
+Config.DeliveryRepLoss = 1 -- amount of rep lost if delivery wrong or late
+Config.PoliceDeliveryModifier = 2 -- amount to multiply active cop count by
+Config.WrongAmountFee = 2 -- divide the payout by this value for wrong delivery amount
+Config.OverdueDeliveryFee = 4 -- divide the payout by this value for overdue delivery
+
+Config.DeliveryItems = {
+    [1] = {
+        ["item"] = "weed_brick",
+        ["minrep"] = 0,
+        ['payout'] = 300
+    },
+    [2] = {
+        ["item"] = "coke_brick",
+        ["minrep"] = 0,
+        ['payout'] = 300
+    },
+}
+
 Config.DeliveryLocations = {
     [1] = {
-        ["label"] = "Pork Factory",
-        ["coords"] = vector3(-296.27, -1300.54, 31.31),
+        ["label"] = "Stripclub",
+        ["coords"] = vector3(106.24, -1280.32, 29.24),
     },
     [2] = {
         ["label"] = "Vinewood Video",
