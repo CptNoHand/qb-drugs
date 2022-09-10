@@ -95,6 +95,15 @@ Config.Products = {
         slot = 10,
         minrep = 0,
     },
+    [11] = {
+        name = "poppy_seed",
+        price = 25,
+        amount = 10,
+        info = {},
+        type = "item",
+        slot = 11,
+        minrep = 5,
+    },
 }
 
 -- Selling Config
