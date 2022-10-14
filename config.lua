@@ -7,7 +7,7 @@ Config.PoliceCallChance = 20
 Config.Products = {
     [1] = {
         name = "weed_white-widow_seed",
-        price = 200,
+        price = 50,
         amount = 2,
         info = {},
         type = "item",
@@ -15,7 +15,7 @@ Config.Products = {
         minrep = 1,
     },
     [2] = {
-        name = "cagoule",
+        name = "poppy_seed",
         price = 25,
         amount = 6,
         info = {},
@@ -24,93 +24,93 @@ Config.Products = {
         minrep = 1,
     },
     [3] = {
-        name = "mushroom_seed",
-        price = 50,
-        amount = 5,
+        name = "ergotplant_seed",
+        price = 25,
+        amount = 6,
         info = {},
         type = "item",
         slot = 3,
         minrep = 1,
     },
     [4] = {
-        name = "methlab",
-        price = 2500,
-        amount = 1,
+        name = "mushroom_seed",
+        price = 50,
+        amount = 5,
         info = {},
         type = "item",
         slot = 4,
-        minrep = 3,
+        minrep = 1,
     },
     [5] = {
-        name = "weed_skunk_seed",
-        price = 200,
-        amount = 2,
+        name = "methlab",
+        price = 2500,
+        amount = 1,
         info = {},
         type = "item",
         slot = 5,
         minrep = 3,
     },
     [6] = {
-        name = "weed_purple-haze_seed",
-        price = 200,
-        amount = 2,
+        name = "coca_seed",
+        price = 250,
+        amount = 5,
         info = {},
         type = "item",
         slot = 6,
-        minrep = 6,
+        minrep = 4,
     },
     [7] = {
+        name = "weed_skunk_seed",
+        price = 50,
+        amount = 2,
+        info = {},
+        type = "item",
+        slot = 7,
+        minrep = 4,
+    },
+    [8] = {
+        name = "weed_purple-haze_seed",
+        price = 50,
+        amount = 2,
+        info = {},
+        type = "item",
+        slot = 8,
+        minrep = 5,
+    },
+    [9] = {
         name = "weed_og-kush_seed",
         price = 250,
         amount = 2,
         info = {},
         type = "item",
-        slot = 7,
-        minrep = 10,
-    },
-    [8] = {
-        name = "weed_amnesia_seed",
-        price = 250,
-        amount = 2,
-        info = {},
-        type = "item",
-        slot = 8,
-        minrep = 15,
-    },
-    [9] = {
-        name = "weed_ak47_seed",
-        price = 250,
-        amount = 2,
-        info = {},
-        type = "item",
         slot = 9,
-        minrep = 20,
+        minrep = 8,
     },
     [10] = {
-        name = "coca_seed",
-        price = 300,
-        amount = 5,
+        name = "weed_amnesia_seed",
+        price = 50,
+        amount = 2,
         info = {},
         type = "item",
         slot = 10,
-        minrep = 25,
+        minrep = 10,
     },
     [11] = {
-        name = "poppy_seed",
-        price = 25,
-        amount = 10,
+        name = "weed_ak47_seed",
+        price = 50,
+        amount = 2,
         info = {},
         type = "item",
         slot = 11,
-        minrep = 5,
+        minrep = 12,
     },
 }
 
 -- Selling Config
-Config.SuccessChance = 50
-Config.ScamChance = 25
-Config.RobberyChance = 25
-Config.MinimumDrugSalePolice = 0
+Config.SuccessChance = 80
+Config.ScamChance = 15
+Config.RobberyChance = 5
+Config.MinimumDrugSalePolice = 1
 
 Config.CornerSellingDrugsList = {
     "weed_white-widow",
@@ -154,20 +154,20 @@ Config.DrugsPrice = {
         max = 96,
     },
     ["joint"] = {
-        min = 36,
-        max = 98,
+        min = 40,
+        max = 125,
     },
     ["weed_bag"] = {
         min = 36,
-        max = 70,
+        max = 115,
     },
     ["crack_baggy"] = {
         min = 42,
-        max = 100,
+        max = 150,
     },
     ["cokebaggy"] = {
         min = 74,
-        max = 113,
+        max = 145,
     },
     ["meth"] = {
         min = 45,
@@ -179,15 +179,15 @@ Config.DrugsPrice = {
     },
     ["mushroom"] = {
         min = 5,
-        max = 50,
+        max = 40,
     },
 }
 
 -- Delivery Config
 Config.UseMarkedBills = false -- true for marked bills, false for cash
-Config.DeliveryRepGain = 1 -- amount of rep gained per delivery
+Config.DeliveryRepGain = 2 -- amount of rep gained per delivery
 Config.DeliveryRepLoss = 1 -- amount of rep lost if delivery wrong or late
-Config.PoliceDeliveryModifier = 2 -- amount to multiply active cop count by
+Config.PoliceDeliveryModifier = 1 -- amount to multiply active cop count by
 Config.WrongAmountFee = 2 -- divide the payout by this value for wrong delivery amount
 Config.OverdueDeliveryFee = 4 -- divide the payout by this value for overdue delivery
 
@@ -199,8 +199,8 @@ Config.DeliveryItems = {
     },
     [2] = {
         ["item"] = "coke_brick",
-        ["minrep"] = 0,
-        ['payout'] = 300
+        ["minrep"] = 5,
+        ['payout'] = 400
     },
 }
 
@@ -223,6 +223,6 @@ Config.DeliveryLocations = {
     },
     [5] = {
         ["label"] = "Bahama Mamas",
-        ["coords"] = vector3(-1383.1, -639.99, 28.67),
+        ["coords"] = vector3(-1367.95, -647.22, 28.69),
     },
 }
