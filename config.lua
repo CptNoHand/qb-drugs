@@ -1,7 +1,7 @@
 Config = Config or {}
 Config.Dealers = {}
 Config.UseTarget = GetConvar('UseTarget', 'false') == 'true'
-Config.PoliceCallChance = 20
+Config.PoliceCallChance = 5
 
 -- Shop Config
 Config.Products = {
@@ -42,73 +42,64 @@ Config.Products = {
         minrep = 1,
     },
     [5] = {
-        name = "methlab",
-        price = 2500,
-        amount = 1,
-        info = {},
-        type = "item",
-        slot = 5,
-        minrep = 3,
-    },
-    [6] = {
         name = "coca_seed",
         price = 250,
         amount = 5,
+        info = {},
+        type = "item",
+        slot = 5,
+        minrep = 4,
+    },
+    [6] = {
+        name = "weed_skunk_seed",
+        price = 50,
+        amount = 2,
         info = {},
         type = "item",
         slot = 6,
         minrep = 4,
     },
     [7] = {
-        name = "weed_skunk_seed",
-        price = 50,
-        amount = 2,
-        info = {},
-        type = "item",
-        slot = 7,
-        minrep = 4,
-    },
-    [8] = {
         name = "weed_purple-haze_seed",
         price = 50,
         amount = 2,
         info = {},
         type = "item",
-        slot = 8,
+        slot = 7,
         minrep = 5,
     },
-    [9] = {
+    [8] = {
         name = "weed_og-kush_seed",
         price = 250,
         amount = 2,
         info = {},
         type = "item",
-        slot = 9,
+        slot = 8,
         minrep = 8,
     },
-    [10] = {
+    [9] = {
         name = "weed_amnesia_seed",
         price = 50,
         amount = 2,
         info = {},
         type = "item",
-        slot = 10,
+        slot = 9,
         minrep = 10,
     },
-    [11] = {
+    [10] = {
         name = "weed_ak47_seed",
         price = 50,
         amount = 2,
         info = {},
         type = "item",
-        slot = 11,
+        slot = 10,
         minrep = 12,
     },
 }
 
 -- Selling Config
-Config.SuccessChance = 80
-Config.ScamChance = 15
+Config.SuccessChance = 75
+Config.ScamChance = 20
 Config.RobberyChance = 5
 Config.MinimumDrugSalePolice = 1
 
@@ -131,55 +122,59 @@ Config.CornerSellingDrugsList = {
 Config.DrugsPrice = {
     ["weed_white-widow"] = {
         min = 30,
-        max = 90,
+        max = 100,
     },
     ["weed_og-kush"] = {
         min = 34,
-        max = 91,
+        max = 105,
     },
     ["weed_skunk"] = {
         min = 35,
-        max = 94,
+        max = 110,
     },
     ["weed_amnesia"] = {
         min = 38,
-        max = 94,
+        max = 115,
     },
     ["weed_purple-haze"] = {
         min = 36,
-        max = 95,
+        max = 120,
     },
     ["weed_ak47"] = {
         min = 36,
-        max = 96,
+        max = 125,
     },
     ["joint"] = {
         min = 40,
-        max = 125,
+        max = 140,
     },
     ["weed_bag"] = {
         min = 36,
-        max = 115,
+        max = 125,
     },
     ["crack_baggy"] = {
         min = 42,
-        max = 150,
+        max = 170,
     },
     ["cokebaggy"] = {
         min = 74,
-        max = 145,
+        max = 165,
     },
     ["meth"] = {
         min = 45,
-        max = 121,
+        max = 175,
     },
     ["heroin"] = {
         min = 46,
-        max = 150,
+        max = 140,
     },
     ["mushroom"] = {
-        min = 5,
-        max = 40,
+        min = 1,
+        max = 25,
+    },
+    ["lsdtab"] = {
+        min = 45,
+        max = 190,
     },
 }
 
@@ -195,12 +190,12 @@ Config.DeliveryItems = {
     [1] = {
         ["item"] = "weed_brick",
         ["minrep"] = 0,
-        ['payout'] = 300
+        ['payout'] = 100
     },
     [2] = {
         ["item"] = "coke_brick",
         ["minrep"] = 5,
-        ['payout'] = 400
+        ['payout'] = 150
     },
 }
 
@@ -211,7 +206,7 @@ Config.DeliveryLocations = {
     },
     [2] = {
         ["label"] = "Vinewood Video",
-        ["coords"] = vector3(223.98, 121.53, 102.76),
+        ["coords"] = vector3(223.3, 121.79, 102.84),
     },
     [3] = {
         ["label"] = "Taxi",

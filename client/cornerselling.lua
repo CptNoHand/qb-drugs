@@ -26,14 +26,13 @@ local function TooFarAway()
 end
 
 local function PoliceCall()
-    if Config.PoliceCallChance <= math.random(1, 100) then
-        TriggerServerEvent('police:server:policeAlert', 'Drug sale in progress')
+    if math.random(1, 100) > 94 then
         local data = exports['cd_dispatch']:GetPlayerInfo()
         TriggerServerEvent('cd_dispatch:AddNotification', {
-            job_table = {'police'}, 
+            job_table = {'police', 'sheriff', 'detectives'}, 
             coords = data.coords,
-            title = '10-100 - Verdächtige Situation',
-            message = 'A '..data.sex..' verdächtige Situation '..data.street, 
+            title = '10-100 - potenzieller Verkauf von Drogen',
+            message = 'A '..data.sex..' potenzieller Verkauf von Drogen '..data.street, 
             flash = 0,
             unique_id = tostring(math.random(0000000,9999999)),
             blip = {
@@ -41,11 +40,12 @@ local function PoliceCall()
                 scale = 1.2, 
                 colour = 3,
                 flashes = false, 
-                text = '911 - Verdächtige Situation',
+                text = '911 - potenzieller Verkauf von Drogen',
                 time = (5*60*1000),
                 sound = 1,
             }
         })
+    else
     end
 end
 
@@ -256,6 +256,7 @@ local function SellToPed(ped)
                                         ClearPedTasksImmediately(entity)
                                         lastPed[#lastPed + 1] = entity
                                         exports['qb-target']:RemoveZone('sellingPed')
+                                        PoliceCall()
                                     end,
                                 },
                             },
